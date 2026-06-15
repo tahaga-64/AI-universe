@@ -1,0 +1,10 @@
+# Keep dependency lockfile conflicts explicit and text-based for review.
+package-lock.json text eol=lf
+
+# Normalize source/config files across environments.
+*.ts text eol=lf
+*.tsx text eol=lf
+*.css text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.mjs text eol=lf

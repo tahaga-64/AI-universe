@@ -60,6 +60,12 @@ src/
   data/             Mock news and galaxy data
 ```
 
+## Merge / Conflict Notes
+
+- `node_modules/` と `.next/` はコミット対象外です。
+- `package-lock.json` は依存関係の再現性のためコミットします。競合した場合は、手で不要な競合マーカーを除去したうえで `npm install` を再実行し、`npm run lint` と `npm run build` を通してください。
+- 3D銀河ページは `src/data/galaxies.ts` を入口にしているため、ページ追加・データ追加時は銀河定義とニュースデータの両方を確認してください。
+
 ## Data
 
 `src/data/news.ts` にニュース/ツール更新/活用法のモックデータを定義し、`src/data/galaxies.ts` で3つの銀河に分けています。Qiita、Zenn、Xの項目は外部API接続前提のモックです。
