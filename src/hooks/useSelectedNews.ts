@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useCallback, useState } from 'react';
-import type { NewsItem } from '@/types/news';
+import { useCallback, useState } from "react";
+import type { NewsItem } from "@/types/news";
 
 export function useSelectedNews() {
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
