@@ -1,24 +1,31 @@
 # AI News Universe
 
-An immersive, Awwwards-inspired Next.js 15 experience where AI news items appear as interactive planets in a cinematic galaxy.
+AIニュースを「星」として探索する、Next.js 15製の3Dインタラクティブ銀河アプリです。星はインパクトスコアに応じて大きくなり、ドラッグで銀河を回転、スクロールでズーム、クリックで詳細パネルを開けます。
 
 ## Stack
 
 - Next.js 15 App Router
-- TypeScript with strict mode
+- TypeScript strict mode
 - Tailwind CSS
-- React Three Fiber, Three.js, and `@react-three/drei`
-- GSAP entrance motion
-- Framer Motion panels
+- React Three Fiber / Three.js / `@react-three/drei`
+- GSAP
+- Framer Motion
+
+## Pages
+
+- `/tools` — AIツールアップデート銀河
+- `/industry` — AIニュース全般の銀河
+- `/use-cases` — Qiita、Zenn、Xなどの実践知を想定したAI活用法銀河
 
 ## Features
 
-- Full-screen animated landing hero
-- Performance-conscious WebGL galaxy with stars, particles, ambient lighting, and slow camera drift
-- Twenty mock AI news planets from OpenAI, Anthropic, Google, Meta, xAI, and Microsoft
-- Hover previews, scale animation, glow states, and click selection
-- Animated news detail drawer with category, source, impact score, and publication date
-- Responsive premium dark interface
+- 回転・ズームできる完全な3D空間
+- 大きなニュースほど大きな星として表示
+- 星、パーティクル、奥行き、ライト、オートローテーション
+- ホバー時の拡大・グロー・プレビュー
+- クリックでFramer Motionのニュース詳細パネルを表示
+- 3つの銀河ページと日本語UI
+- 型付きモックデータと拡張しやすい構造
 
 ## Getting Started
 
@@ -36,6 +43,7 @@ npm run dev
 npm run build
 npm run start
 npm run lint
+npm run check:conflicts
 ```
 
 ## Project Structure
@@ -45,14 +53,20 @@ src/
   app/              App Router pages, layout, global styles
   components/
     ui/             Reusable interface primitives and hero
-    universe/       Three.js galaxy and planet components
+    universe/       Three.js galaxy and planet/star components
     news/           News detail UI
   hooks/            Client state hooks
   lib/              Shared utilities
   types/            TypeScript domain types
-  data/             Mock news data
+  data/             Mock news and galaxy data
 ```
+
+## Merge / Conflict Notes
+
+- `node_modules/` と `.next/` はコミット対象外です。
+- `package-lock.json` は依存関係の再現性のためコミットします。競合した場合は、手で不要な競合マーカーを除去したうえで `npm install` を再実行し、`npm run check:conflicts`、`npm run lint`、`npm run build` を通してください。
+- 3D銀河ページは `src/data/galaxies.ts` を入口にしているため、ページ追加・データ追加時は銀河定義とニュースデータの両方を確認してください。
 
 ## Data
 
-Mock article data lives in `src/data/news.ts` and is typed by `src/types/news.ts`. Replace this file with a server-fetched feed when connecting a production news API.
+`src/data/news.ts` にニュース/ツール更新/活用法のモックデータを定義し、`src/data/galaxies.ts` で3つの銀河に分けています。Qiita、Zenn、Xの項目は外部API接続前提のモックです。
